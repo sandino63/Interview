@@ -1,0 +1,66 @@
+package arrays;
+
+public class BuySellProblem {
+
+	public static void main(String[] args) {
+		int A[] =  {100,20, 180, 260, 310, 40, 535, 695};
+		//
+		buySell(A);
+
+	}
+
+	private static int buySell(int[] A) {
+		
+		if(A == null || A.length < 2){
+			
+			return 0;
+		}
+		int profit = 0 ;
+		int sellIndex = 0; 
+		int buyingIndex = 0 ;
+		int minElement = Integer.MAX_VALUE;
+		
+		for(int i = 0 ; i < A.length ; i++){
+			
+			
+			
+			if( A[i] < minElement){
+				minElement = A[i];
+				buyingIndex = i;
+				
+			}
+			
+			//profit = Math.max(profit, A[i]-minElement);
+			if(profit < A[i]-minElement){
+				profit = A[i]-minElement;
+				sellIndex =i;
+				
+			}
+			
+			
+		//	minElement = Math.min(minElement, A[i]);
+			
+		}
+		
+		System.out.println("buyingIndex:::" +buyingIndex +":::BuyingValue:::"+A[buyingIndex]);
+		System.out.println("sellIndex:::" +sellIndex +":::sellingValue:::"+A[sellIndex]);
+		System.out.println("profit:::" +profit);
+		System.out.println("minElement::" +minElement);
+		
+		return profit;
+		
+		
+	}
+
+}
+
+
+
+output ::----
+
+buyingIndex:::1:::BuyingValue:::20
+sellIndex:::7:::sellingValue:::695
+profit:::675
+minElement::20
+
+
