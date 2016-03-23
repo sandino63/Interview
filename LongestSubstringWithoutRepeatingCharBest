@@ -1,0 +1,51 @@
+
+
+/**
+ * 	@INPUT  :::String str = "ABCDABDEHHHFGCABD";
+ * @OUTPUT
+ *String is ::HFGCABD
+ lenth of LongestSubsting ::: 7
+Complexity will be O(n) and single scan
+ */
+import java.util.HashSet;
+
+public class LongestSubstringWithoutRepeatingCharBest {
+
+	public static void main(String[] args) {
+		String str = "ABCDABDEHHHFGCABD";
+
+		System.out.println("lent of LongestSubsting ::: "
+				+ longestSubString(str));
+
+	}
+
+	private static int longestSubString(String str) {
+
+		HashSet<Character> hset = new HashSet<>();
+
+		int n = str.length();
+		int max = 0;
+		int startString = 0;
+		for (int i = 0; i < n; i++) {
+			int j = i;
+			int an = 0;
+			startString = i;
+
+			while (j < n && hset.add(str.charAt(j))) {
+
+				j++;
+				an++;
+			}
+
+			max = Math.max(max, an);
+			startString = n - max;
+			hset.clear();
+		}
+
+		System.out.println("String is ::"
+				+ str.substring(startString, startString + max));
+
+		return max;
+	}
+
+}
