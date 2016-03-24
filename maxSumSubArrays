@@ -1,0 +1,77 @@
+/**
+ * @author sandeep kADANE Algorithm A sub-array has one number of some
+ *         continuous numbers. Given an integer array with positive numbers and
+ *         negative numbers, get the maximum sum of all sub-arrays. Time
+ *         complexity should be O(n).
+ * 
+ *         For example, in the array {1, -2, 3, 10, -4, 7, 2, -5}, its sub-array
+ *         {3, 10, -4, 7, 2} has the maximum sum 18.
+ */
+public class MaxSumAllSubArraysWithoutDP {
+
+	public static void main(String[] args) {
+		int A[] = { 1, -2, 3, 10, -4, 7, 2, -5 };
+		int n = A.length;
+		System.out.println(SumArrays(A, n));
+maxSubArray(A);
+	}
+
+	// this method take care of all the cases
+	public int maxSubArray(int[] nums) {
+
+		if (nums == null || nums.length == 0)
+			return 0;
+		if (nums.length < 2)
+			return nums[0];
+
+		int sumEndingHere = 0;
+
+		int maxSum = Integer.MIN_VALUE;
+
+		for (int i = 0; i < nums.length; i++) {
+
+			sumEndingHere += nums[i];
+
+			if (maxSum < sumEndingHere) {
+
+				maxSum = sumEndingHere;
+			}
+
+			if (sumEndingHere < 0) {
+
+				sumEndingHere = 0;
+				continue;
+			}
+
+		}
+		return maxSum;
+	}
+
+	private static int SumArrays(int[] A, int n) {
+		int sumEndingHere = 0;
+		int sumMax = 0;
+
+		int startIndex = 0, EndIndex = 0, CurrentIndex = 0;
+
+		for (int i = 0; i < n; i++) {
+
+			sumEndingHere += A[i];
+			if (sumEndingHere < 0) {
+				sumEndingHere = 0;
+				CurrentIndex = i + 1;
+				continue;
+
+			}
+			if (sumEndingHere > sumMax)
+
+				sumMax = sumEndingHere;
+			startIndex = CurrentIndex;
+			EndIndex = i;
+
+		}
+		System.out.println("StartIndex :" + startIndex + " " + "EndIndex ::"
+				+ EndIndex);
+		return sumMax;
+	}
+
+}
