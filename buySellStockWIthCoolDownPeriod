@@ -1,0 +1,30 @@
+public class BuySellProblemCooldown {
+
+	public static void main(String[] args) {
+		int prices[] = { 1, 2, 3, 0, 2 };
+
+		System.out.println(maxProfit(prices));
+	}
+
+	public static int maxProfit(int[] prices) {
+
+		if (prices == null || prices.length == 0)
+			return 0;
+
+		int n = prices.length;
+		int sell = 0;
+		int Prevsell = 0;
+
+		int buy = Integer.MIN_VALUE;
+		int Prevbuy = 0;
+		for (int i = 0; i < n; i++) {
+
+			Prevbuy = buy;
+			buy = Math.max(Prevsell - prices[i], Prevbuy);
+			Prevsell = sell;
+			sell = Math.max(Prevbuy + prices[i], Prevsell);
+			
+		}
+		return sell;
+	}
+}
