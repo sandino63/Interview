@@ -7,6 +7,8 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
+ 
+ //Recursive Approach
 public class Solution {
     
       List<Integer> ls = new LinkedList<Integer>();
@@ -17,6 +19,44 @@ public class Solution {
         inorderTraversal(root.left);
         ls.add(root.val);
         inorderTraversal(root.right);
+        return ls;
+    }
+    
+    
+}
+
+
+//Iterative Approach 
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    
+      List<Integer> ls = new LinkedList<Integer>();
+      Stack<TreeNode> st =  new Stack<TreeNode>();
+    public List<Integer> inorderTraversal(TreeNode root) {
+  
+        if(root == null )  return ls;
+        while(root != null){
+         st.push(root);
+         root = root.left;
+         while(root==null){
+             if(st.isEmpty()) return ls;
+             root = st.pop();
+             ls.add(root.val);
+             root = root.right;
+         }
+    
+    
+        }
         return ls;
     }
     
