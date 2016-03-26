@@ -18,3 +18,33 @@ public class Solution {
          return ls;
     }
 }
+
+//Iterative Solution 
+
+public class Solution {
+    List<Integer> ls = new LinkedList<>();
+    Stack<TreeNode> st = new Stack<TreeNode>();
+    public List<Integer> preorderTraversal(TreeNode root) {
+        if (root == null) return ls;
+        
+     
+        
+        st.push(root);
+       
+        while(!st.isEmpty()){
+          TreeNode  temp = st.pop();
+             ls.add(temp.val);
+              if(temp.right!= null){
+         
+         st.push(temp.right);
+             }
+             if(temp.left!= null){
+       
+        st.push(temp.left);
+             }
+        
+        }
+    
+         return ls;
+    }
+}
