@@ -38,7 +38,7 @@ public class LongestSubstringWithoutRepeatingCharBest {
 			}
 
 			max = Math.max(max, an);
-			startString = n - max;
+			startString = an;
 			hset.clear();
 		}
 
