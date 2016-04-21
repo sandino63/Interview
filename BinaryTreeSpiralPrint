@@ -1,0 +1,62 @@
+import java.util.Stack;
+
+public class BinaryTreeSpiralPrint {
+
+	public static void main(String[] args) {
+
+		BinaryTreeNode root = new BinaryTreeNode(1);
+		BinaryTreeNode n1 = new BinaryTreeNode(2);
+		BinaryTreeNode n2 = new BinaryTreeNode(3);
+		BinaryTreeNode n3 = new BinaryTreeNode(4);
+		BinaryTreeNode n4 = new BinaryTreeNode(5);
+		BinaryTreeNode n5 = new BinaryTreeNode(6);
+		BinaryTreeNode n6 = new BinaryTreeNode(7);
+
+		root.setLeft(n1);
+		root.setRight(n2);
+		root.getLeft().setLeft(n6);
+		root.getLeft().setRight(n5);
+		root.getRight().setLeft(n3);
+		root.getRight().setRight(n4);
+
+		SpiralPrint(root);
+	}
+
+	private static void SpiralPrint(BinaryTreeNode root) {
+
+		Stack<BinaryTreeNode> s1 = new Stack<>(); // right to left
+		Stack<BinaryTreeNode> s2 = new Stack<>(); // left to right
+		if (root == null)
+			System.out.println("no Binary tree");
+		s1.push(root);
+		while (!s1.isEmpty() || !s2.isEmpty()) {
+
+			while (!s1.isEmpty()) {
+				BinaryTreeNode temp = s1.peek();
+				s1.pop();
+				System.out.println(temp.getData());
+				// for right to left and push to another stack
+				if (temp.getRight() != null)
+					s2.push(temp.getRight());
+				if (temp.getLeft() != null)
+					s2.push(temp.getLeft());
+
+			}
+
+			while (!s2.isEmpty()) {
+				BinaryTreeNode temp = s2.peek();
+				s2.pop();
+				System.out.println(temp.getData());
+				// for lrft to right
+				if (temp.getLeft() != null)
+					s1.push(temp.getLeft());
+				if (temp.getRight() != null)
+					s1.push(temp.getRight());
+
+			}
+
+		}
+
+	}
+
+}
