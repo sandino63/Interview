@@ -1,0 +1,30 @@
+public class Solution {
+    public int search(int[] nums, int target) {
+        
+       return  search(nums, 0,nums.length-1 , target);
+        
+    }
+    
+    private int search(int []A, int low,int high ,int target){
+        
+        if(high < low) return -1;
+     
+        int mid = (low + high)/2;
+        
+        if(A[mid] == target) return mid ; 
+        
+        
+        if(A[low] <= A[mid])
+            if(A[low] <= target && target <= A[mid] ) 
+            return search(A, low,mid-1 , target);
+            else
+            return search(A, mid+1,high , target);
+         if(A[mid] <= A[high])
+             if(A[mid] <= target && target <= A[high] ) 
+            return search(A, mid+1,high , target);
+            else
+            return search(A, low,mid-1 , target);
+        
+        return -1;
+    }
+}
