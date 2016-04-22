@@ -1,0 +1,41 @@
+public class PowerOf2 {
+
+	public static void main(String[] args) {
+
+		System.out.println(bitMethod(32));
+		System.out.println(NormalMethod(32));
+
+	}
+
+	private static boolean NormalMethod(int n) {
+
+		if (n <= 0)
+			return false;
+
+		while (n > 1) {
+
+			if (n % 2 != 0) {
+
+				return false;
+			}
+			n = n / 2;
+			return true;
+
+		}
+
+		return false;
+	}
+
+	private static boolean bitMethod(int n) {
+
+		if (n <= 0)
+			return false;
+
+		if ((n & (n - 1)) != 0) {
+			return false;
+		}
+		return true;
+
+	}
+
+}
