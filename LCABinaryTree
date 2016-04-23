@@ -21,3 +21,49 @@ public class Solution {
         else return (left!=null ?left:right);
     }
 }
+
+
+//Iterative Approach 
+
+
+public class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        
+        if(root == null) return root;
+        
+      HashMap<TreeNode ,TreeNode> parents = new HashMap<>();
+      Deque<TreeNode> stack = new ArrayDeque<>();
+      parents.put(root,null);
+      stack.add(root);
+      
+      while(!parents.containsKey(p) || !parents.containsKey(q)){
+          
+          TreeNode node = stack.pop();
+          
+          if(node.left != null ){
+              
+               parents.put(node.left,node);
+               stack.add(node.left);
+          }if(node.right != null){
+              parents.put(node.right,node);
+               stack.add(node.right);
+          }
+          
+          
+      }
+      Set<TreeNode> ancesstor = new HashSet<>();
+      
+      while(p!= null){
+          ancesstor.add(p);
+          p = parents.get(p);
+      }
+      
+      while(!ancesstor.contains(q))
+          q = parents.get(q);
+          
+          
+          return q;
+      
+      
+    }
+}
