@@ -35,3 +35,45 @@ public class Solution {
         
     }
 }
+
+
+//O(n) Approrach 
+
+
+/**
+ * Definition for singly-linked list with a random pointer.
+ * class RandomListNode {
+ *     int label;
+ *     RandomListNode next, random;
+ *     RandomListNode(int x) { this.label = x; }
+ * };
+ */
+public class Solution {
+    public RandomListNode copyRandomList(RandomListNode head) {
+     if (head == null) return null;
+
+//copy same node at alternate position 
+    for (RandomListNode iter = head; iter != null; iter = iter.next.next) {
+        RandomListNode copy = new RandomListNode(iter.label);
+        copy.next = iter.next;
+        iter.next = copy;
+    }
+
+//copy Random Pointers
+    for (RandomListNode iter = head; iter != null; iter = iter.next.next){
+        if (iter.random != null)
+            iter.next.random = iter.random.next;
+}
+
+//Seprate Pointers for ODD and EVEN , Even List Contains the random pointers clone
+    RandomListNode evenHead = head.next, odd = head, even = evenHead;
+    while (even.next != null) {
+        odd.next = odd.next.next;
+        even.next = even.next.next;
+        odd = odd.next;
+        even = even.next;
+    }
+    odd.next = null;
+    return evenHead;
+    }
+}
