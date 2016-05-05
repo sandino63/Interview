@@ -2,7 +2,7 @@ public class UniqueChecker2 {
 
 	public static void main(String[] args) {
 
-		String str = "bhargav";
+		String str = "sandeep";
 		UniqueChecker2 uc = new UniqueChecker2();
 		String result = uc.checkUnique(str);
 		if (result != null)
