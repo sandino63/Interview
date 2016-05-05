@@ -1,0 +1,33 @@
+public class UniqueChecker2 {
+
+	public static void main(String[] args) {
+
+		String str = "bhargav";
+		UniqueChecker2 uc = new UniqueChecker2();
+		String result = uc.checkUnique(str);
+		if (result != null)
+			System.out.println("String has all unique characters   "
+					+ result.toString());
+		else
+			System.out.println("String does not have all unique characters");
+	}
+
+	public String checkUnique(String str) {
+		StringBuilder sb = new StringBuilder();
+		boolean[] strSet = new boolean[256];// boolean array representing each
+											// character in char set
+
+		for (int i = 0; i < str.length(); i++) {
+
+			int val = str.charAt(i);// we assign a character to an int so its
+									// ASCII value gets stored..!
+			if (!strSet[val]) {
+				sb.append(str.charAt(i));// if its already true
+				// we have a duplicate
+			}
+			strSet[val] = true; // set boolean value representing that character
+								// to be true
+		}
+		return sb.toString(); // all characters in string was unique..!
+	}
+}
