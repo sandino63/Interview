@@ -45,3 +45,36 @@ public class Solution {
           return res;
     }
 }
+
+
+
+
+
+
+
+//Another Approach 
+
+
+public class Solution {
+    public List<Integer> rightSideView(TreeNode root) {
+         List<Integer> res = new ArrayList<>();
+        if(root == null) return res;
+       
+       rightSideView(res , root , 1);
+      
+          return res;
+    }
+    
+   void  rightSideView(List<Integer> res ,TreeNode root , int level){
+       
+       if(root == null) return;
+        
+        if(res.size() < level ){
+            res.add(root.val);
+            
+        }
+        rightSideView(res , root.right , level+1);
+         rightSideView(res , root.left , level+1);
+        
+    }
+}
