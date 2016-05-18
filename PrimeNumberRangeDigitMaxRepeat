@@ -1,0 +1,72 @@
+/**
+ * 2. given two number l and r (l<=r<=10^6) find most frequent digit among all prime numbers between l and r inclusive. if frequency is same print highest digit.
+ */
+
+/**
+ * @author sandeep
+ *
+ */
+public class PrimeNumberRange {
+
+	/**
+	 * 
+	 */
+	static int A[] = new int[10];
+	static int w = 0;
+
+	public PrimeNumberRange() {
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+
+		primeNumber(2, 13);
+
+	}
+
+	private static void primeNumber(int a, int b) {
+		int max = 0;
+		int no = 0;
+		int i;
+		for (i = a; i <= b; i++) {
+			isPrime(i);
+		}
+
+		if (w != 0) {
+			max = A[0];
+			no = 0;
+			for (i = 1; i <= 9; i++) {
+				if (A[i] > max) {
+
+					max = A[i];
+					no = i;
+				}
+
+			}
+		}
+		System.out.println("Highest occuring digit  " + no);
+		System.out.println("Highest occuring digit number of times   " + max);
+
+	}
+
+	private static void isPrime(int m) {
+		int a;
+
+		for (a = 2; a <= m / 2; a++) {
+
+			if (m % a == 0)
+				return;
+		}
+		w = 1;
+		while (m > 0) {
+			a = m % 10;
+			m = m / 10;
+			A[a] += 1;
+		}
+
+	}
+
+}
