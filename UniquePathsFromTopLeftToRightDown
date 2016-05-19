@@ -1,6 +1,6 @@
 Count all possible paths from top left to bottom right of a mXn matrix
 //The problem is to count all the possible paths from top left to bottom right of a mXn matrix with the constraints that from each cell you can either move only to right or down
-
+//Complexity of below is Exponential 
 / number n from the topmost leftmost cell (cell at 1, 1)
 int  numberOfPaths(int m, int n)
 {
@@ -16,7 +16,7 @@ int  numberOfPaths(int m, int n)
  
  
  
- //DP Solution 
+ //DP Solution  Complexity is O(mn)
  // Returns count of possible paths to reach cell at row number m and column
 // number n from the topmost leftmost cell (cell at 1, 1)
 int numberOfPaths(int m, int n)
