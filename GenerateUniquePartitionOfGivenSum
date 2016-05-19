@@ -1,0 +1,40 @@
+/***
+. Given a number N. print in how many ways it can be represented as N = a+b+c+d , 1< =a< =b< =c< = d; 1<=N< = 5000
+**/
+
+
+
+public class GenerateUniquePartition {
+	private static int Array_Length;
+	private static int count = 0;
+
+	public static void generateSeq(int n, int m) {
+		Array_Length = m;
+		generateSeq(new int[m], n, 0, n - 1);
+		System.out.println(count);
+	}
+private static void generateSeq(int[] a, int sum, int arrayIndex, int index) {
+		if (arrayIndex == Array_Length && sum == 0) {
+			for (int i : a) {
+				System.out.print(i + " ");
+			}
+			System.out.print(" , ");
+			count++;
+			return;
+		}
+
+		if (arrayIndex == Array_Length)
+			return;
+
+		for (int i = index; i >= 1; i--) {
+			if (sum - i >= 0) {
+				a[arrayIndex] = i;
+				generateSeq(a, sum - i, arrayIndex + 1, i);
+			}
+		}
+	}
+
+	public static void main(String[] args) {
+		generateSeq(10, 4);
+	}
+}
