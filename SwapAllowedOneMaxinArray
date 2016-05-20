@@ -1,0 +1,54 @@
+/**
+ * Given a number in form of array, maximize the number w.r.t allowed number of swaps (can swap only adjacent elements) – maximize(int[] data, int numSwaps)
+Eg: 1265 is number – if 1 swap allowed – maximum number we can get out of it is 2165
+1265 is number – if 3 swaps allowed – maximum number we can get out of it is 6215
+ */
+
+/**
+ * @author sandeep
+ *
+ */
+public class SwapAllowedOneMaxinArray {
+
+	public static void maximize(int[] ar, int swapsAllowed) {
+		int numSwaps = swapsAllowed;
+		for (int j = 0; numSwaps != 0; j++) {
+			int i = maxNum(ar, j, ar.length);
+			if (numSwaps < ar.length - j)
+				i = numSwaps;
+			for (; i > 0; i--) {
+				swap(ar, i, i - 1);
+			}
+			numSwaps--;
+		}
+	}
+
+	private static void swap(int[] ar, int i, int j) {
+		int temp;
+		temp = ar[i];
+		ar[i] = ar[j];
+		ar[j] = temp;
+
+	}
+
+	public static int maxNum(int ar[], int start, int end) {
+		int max = ar[start];
+		int maxIndex = start;
+		for (int i = start; i < end; i++) {
+			if (max < ar[i]) {
+				max = ar[i];
+				maxIndex = i;
+			}
+		}
+		return maxIndex;
+	}
+
+	public static void main(String[] args) {
+
+		int A[] = { 3, 8, 9 };
+		maximize(A, 1);
+		for (int i = 0; i < A.length; i++)
+			System.out.println(A[i]);
+	}
+
+}
