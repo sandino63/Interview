@@ -26,3 +26,31 @@ public class MinHeapKthLargest {
 		return q.peek();
 	}
 }
+
+
+
+
+public class Solution {
+    public int findKthLargest(int[] nums, int k) {
+        
+        if(nums == null) return -1;
+        
+        PriorityQueue<Integer> meanHeap = new PriorityQueue<Integer>(k);
+        
+        
+        for(int i : nums){
+            
+            meanHeap.offer(i);
+            
+            if(meanHeap.size() > k) {meanHeap.poll();}
+        }
+        
+        return meanHeap.peek();
+    }
+}
+
+
+
+
+
+
