@@ -1,0 +1,28 @@
+import java.util.PriorityQueue;
+
+/**
+ * @author sandeep
+ *
+ */
+public class MinHeapKthLargest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int A[] = { 3, 2, 1, 5, 6, 4 };
+		System.out.println(findKthLargest(A, 2));
+
+	}
+
+	public static int findKthLargest(int[] nums, int k) {
+		PriorityQueue<Integer> q = new PriorityQueue<Integer>(k);
+		for (int i : nums) {
+			q.offer(i); //add it heap and output is true
+			if (q.size() > k) {
+				q.poll(); //polling 
+
+			}
+		}
+		System.out.println("Total Q  " + q);
+		return q.peek();
+	}
+}
