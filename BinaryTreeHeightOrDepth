@@ -1,0 +1,26 @@
+/**
+
+Recursively calculate height of left and right subtrees of a node and assign height to the node as max of the heights of two children plus 1. See below pseudo code and program for details.
+*/
+
+
+
+
+int maxDepth(Node node) {
+        if (node == null) {
+            return 0;
+        } else {
+             
+            /* compute the depth of each subtree */
+            int lDepth = maxDepth(node.left);
+            int rDepth = maxDepth(node.right);
+ 
+            /* use the larger one */
+            if (lDepth > rDepth) {
+                return (lDepth + 1);
+            } else {
+                return (rDepth + 1);
+            }
+        }
+    }
+    
