@@ -1,0 +1,103 @@
+/*
+Consider a situation where we have a set of intervals and we need following operations to be implemented efficiently. 
+1) Add an interval
+2) Remove an interval
+3) Given an interval x, find if x overlaps with any of the existing intervals.
+
+Interval Tree: The idea is to augment a self-balancing Binary Search Tree (BST) like Red Black Tree, AVL Tree, etc to maintain set of intervals so that all operations can be done in O(Logn) time.
+
+Every node of Interval Tree stores following information.
+a) i: An interval which is represented as a pair [low, high]
+b) max: Maximum high value in subtree rooted with this node.
+
+The low value of an interval is used as key to maintain order in BST. The insert and delete operations are same as insert and delete in self-balancing BST used.
+
+IntervalSearcTree
+
+The main operation is to search for an overlapping interval. Following is algorithm for searching an overlapping interval x in an Interval tree rooted with root.
+
+Interval overlappingIntervalSearch(root, x)
+1) If x overlaps with root's interval, return the root's interval.
+
+2) If left child of root is not empty and the max  in left child 
+is greater than x's low value, recur for left child
+
+3) Else recur for right child.
+
+*/
+
+
+
+
+ class Interval {
+	int low;
+	int high;
+	public Interval(int low ,int high) {
+		this.low = low;
+		this.high = high;
+	}
+
+}
+
+public class IntervalTree {
+
+	Interval interval;
+	int max;
+	IntervalTree left, right;
+
+	public IntervalTree() {
+
+	}
+
+	public boolean doOverlap(Interval i1, Interval i2) {
+		if (i1.low <= i2.high || i2.low <= i1.high)
+			return true;
+		return false;
+
+	}
+
+	public IntervalTree insert(IntervalTree root, Interval i) {
+		if (root == null)
+			return newNode(i);
+
+		int l = root.interval.low;
+		if (i.low < l) {
+			root.left = insert(root.left, i);
+		} else
+			root.right = insert(root.right, i);
+
+		if (root.max < i.high)
+			root.max = i.high;
+		return root;
+
+	}
+
+	public IntervalTree newNode(Interval i) {
+
+		IntervalTree temp = new IntervalTree();
+		temp.interval.low = i.low;
+		temp.interval.high = i.high;
+		temp.max = i.high;
+		temp.left = null;
+		temp.right = null;
+
+		return temp;
+
+	}
+
+	public Interval overlapInterval(IntervalTree root, Interval i) {
+
+		if (root == null)
+			return null;
+
+		if (doOverlap(root.interval, i))
+			return root.interval;
+
+		if (root.left != null && root.left.max >= i.low)
+			return overlapInterval(root.left, i);
+		else
+			return overlapInterval(root.right, i);
+
+	}
+
+}
