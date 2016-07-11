@@ -10,3 +10,4 @@ http://kafka.apache.org/082/javadoc/org/apache/kafka/
 
 
 
+kafka(Messaging) -> storm(real time processing ) ->spark (next level MAP-Reduce )->Cassandra/HBASE(database)
