@@ -1,0 +1,125 @@
+import java.util.Stack;
+
+/**
+ * 
+ */
+
+/**
+ * @author sandeep
+ *
+ */
+public class TvRemote {
+
+	static Stack<Integer> st = new Stack<>();
+
+	public TvRemote() {
+
+	}
+
+	/**
+	 * @param args
+	 * 
+	 *            check for array empty or not if not then add in stack
+	 * 
+	 */
+	public static void main(String[] args) {
+		int tv[] = { 12, 13, 100, 98, 10000, 67, 67 };
+		st.push(tv[0]);
+		int sum = 0;
+		for (int i = 1; i < tv.length; i++) {
+
+			int click = 0;
+			int curChannel = tv[i];
+			if (curChannel < 10) {
+				click = 1;
+			} else {
+				click = calculateClick(curChannel);
+			}
+			sum = sum + click;
+			st.push(tv[i]);
+		}
+
+		System.out.println("Number of Cick ::" + sum);
+
+	}
+
+	private static int calculateClick(int curChannel) {
+		int curChannelDigit = String.valueOf(curChannel).length();
+		int backChannel = st.peek();
+		int backChannelDigit = String.valueOf(backChannel).length();
+		// check for back channel then go for next
+		if (backChannel == curChannel)
+			return 1;
+
+		int diffChannelNum = curChannelDigit - backChannelDigit;
+		int absNum = Math.abs(diffChannelNum);
+
+		int channelNumDiff = curChannel - backChannel;
+		int absChannelNumDiff = Math.abs(channelNumDiff);
+
+		if (curChannelDigit == backChannelDigit) {
+			return Math.min(absNum, curChannelDigit);
+		} else if (absNum == 1) {
+
+			if (absChannelNumDiff > curChannelDigit)
+				return curChannelDigit;
+
+			if (diffChannelNum > 0) {
+				// check for upChannel
+
+				for (int i = 1; i <= curChannelDigit; i++) {
+					if (++backChannel == curChannel)
+						return Math.min(i, curChannelDigit);
+				}
+			} else {
+				// check for downChannel
+				for (int i = 1; i <= curChannelDigit; i++) {
+					if (--backChannel == curChannel)
+						return Math.min(i, curChannelDigit);
+				}
+			}
+
+		} else {
+
+			return curChannelDigit;
+		}
+		return 0;
+
+	}
+
+	public int upChannel() {
+
+		int backChannel = st.peek();
+		++backChannel;
+		st.push(backChannel);
+		return backChannel;
+
+	}
+
+	public int downChannel() {
+
+		int backChannel = st.peek();
+		--backChannel;
+		st.push(backChannel);
+		return backChannel;
+
+	}
+
+	public int back(int n) {
+		int num = st.peek();
+		if (n == num) {
+			return 1;
+		}
+		return 0;
+	}
+
+	public int singleDigitChannel(int n) {
+		int length = String.valueOf(n).length();
+
+		if (length == 1)
+			return 1;
+
+		return 0;
+	}
+
+}
