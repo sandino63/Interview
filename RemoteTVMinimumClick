@@ -23,7 +23,7 @@ public class TvRemote {
 	 * 
 	 */
 	public static void main(String[] args) {
-		int tv[] = { 12, 13, 100, 98, 10000, 67, 67 };
+		int tv[] = { 12, 13, 100, 98, 10000, 67, 67, 10000, 10003 };
 		st.push(tv[0]);
 		int sum = 0;
 		for (int i = 1; i < tv.length; i++) {
@@ -58,7 +58,7 @@ public class TvRemote {
 		int absChannelNumDiff = Math.abs(channelNumDiff);
 
 		if (curChannelDigit == backChannelDigit) {
-			return Math.min(absNum, curChannelDigit);
+			return Math.min(absChannelNumDiff, curChannelDigit);
 		} else if (absNum == 1) {
 
 			if (absChannelNumDiff > curChannelDigit)
