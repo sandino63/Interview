@@ -1,0 +1,13 @@
+https://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying
+
+
+http://kafka.apache.org/documentation.html#introduction
+
+https://www.quora.com/Whats-the-best-way-to-start-learning-Kafka
+
+code - base
+http://kafka.apache.org/082/javadoc/org/apache/kafka/
+
+
+
+kafka(Messaging) -> storm(real time processing ) ->spark (next level MAP-Reduce )->Cassandra/HBASE(database)
