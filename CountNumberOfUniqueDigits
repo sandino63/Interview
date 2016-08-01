@@ -1,0 +1,28 @@
+Given a non-negative integer n, count all numbers with unique digits, x, where 0 ≤ x < 10n.
+
+Example:
+Given n = 2, return 91. (The answer should be the total numbers in the range of 0 ≤ x < 100, excluding [11,22,33,44,55,66,77,88,99])
+
+ Count Numbers with Unique Digits
+
+
+public class Solution {
+    public int countNumbersWithUniqueDigits(int n) {
+        //if n=0 then power of 0 becomes 1
+        if(n==0) return 1;
+        //if n=1 then power of 1 of that number is the number itself so here is < 10 so 0 to 9 is having 10 options 
+        if(n==1) return 10;
+        
+        int count =10;
+        int base =9;
+        
+        for(int i =0 ; i < n-1 ; i++){
+            base = base*(9-i);
+            count +=base;
+            
+        }
+        
+        return count;
+        
+    }
+}
