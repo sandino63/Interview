@@ -7,3 +7,10 @@ why solr cloud indexing and routing of docs are needed
 http://lucene.472066.n3.nabble.com/Solr-Cloud-sharding-strategy-td4262274.html#a4262304
 
 
+how data import handler works 
+
+https://cwiki.apache.org/confluence/display/solr/Uploading+Structured+Data+Store+Data+with+the+Data+Import+Handler
+
+
+
+
