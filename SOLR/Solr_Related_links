@@ -17,4 +17,10 @@ How to reindex
 http://wiki.apache.org/solr/HowToReindex
 
 
+WHY BATCH size should be "-1" instead of 1 or other value 
+
+https://datafireball.com/2016/02/29/solr-dih-batchsize/
+
+
+
 
