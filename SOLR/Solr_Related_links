@@ -35,9 +35,12 @@ http://entropytc.com/importing-a-mysql-database-into-apache-solr/
 
 
 
-How to setup solr cloud with zookeeper (external)
-step by step 
+How to setup solr cloud with zookeeper (external), also why external Zookeeper required 
+step by step :----
 https://cwiki.apache.org/confluence/display/solr/Setting+Up+an+External+ZooKeeper+Ensemble
+http://jayant7k.blogspot.in/2013/06/step-by-step-setting-up-solr-cloud.html
+
+
 
 we have setup on solr cloud 6.2
 
