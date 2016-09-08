@@ -39,6 +39,9 @@ How to setup solr cloud with zookeeper (external), also why external Zookeeper r
 step by step :----
 https://cwiki.apache.org/confluence/display/solr/Setting+Up+an+External+ZooKeeper+Ensemble
 http://jayant7k.blogspot.in/2013/06/step-by-step-setting-up-solr-cloud.html
+http://zookeeper.apache.org/doc/r3.4.5/zookeeperAdmin.html#sc_CrossMachineRequirements
+
+
 
 
 
