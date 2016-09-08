@@ -12,6 +12,11 @@ and how springboot works
 
 https://dzone.com/articles/how-springboot-autoconfiguration-magic-works
 
+how to handle Zookeeper on two machine if most of nodes are down ?
+http://stackoverflow.com/questions/13403852/how-does-solrcloud-handle-host-failures?rq=1
+
+
+
 
 How to setup solr cloud with zookeeper (external)
 step by step 
