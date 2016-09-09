@@ -47,3 +47,15 @@ http://zookeeper.apache.org/doc/r3.4.5/zookeeperAdmin.html#sc_CrossMachineRequir
 
 we have setup on solr cloud 6.2
 
+
+
+
+
+how to use solr repo using spring 
+
+http://docs.spring.io/spring-data/solr/docs/1.2.0.RC1/reference/htmlsingle/
+
+http://docs.spring.io/spring-data/solr/docs/current/reference/html/#solr.mapping.mappingSolr
+
+
+
