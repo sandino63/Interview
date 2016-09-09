@@ -65,3 +65,11 @@ solr cloud using spring :----
 how to do data solr in crud 
 https://www.petrikainulainen.net/programming/solr/spring-data-solr-tutorial-crud-almost/
 https://www.javacodegeeks.com/2013/06/spring-data-solr-tutorial-adding-custom-methods-to-all-repositories.html
+
+
+how to build query 
+https://github.com/spring-projects/spring-data-examples/blob/master/solr/example/src/test/java/example/springdata/solr/AdvancedSolrRepositoryTests.java
+
+
+
+
