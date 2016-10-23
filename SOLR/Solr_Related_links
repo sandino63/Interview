@@ -100,5 +100,7 @@ to seeing solr related indexing and their sizing
 http://<ip>:8983/solr/admin/cores?action=STATUS&memory=true
 
 
+how to do configuration properly and best practises 
 
+https://support.datastax.com/hc/en-us/articles/204226369-Solr-Configuration-Best-Practices-and-Troubleshooting-Tips
 
