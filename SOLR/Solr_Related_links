@@ -95,3 +95,10 @@ Solr Authentication
 https://lucidworks.com/blog/2015/08/17/securing-solr-basic-auth-permission-rules/
 
 
+to seeing solr related indexing and their sizing 
+
+http://<ip>:8983/solr/admin/cores?action=STATUS&memory=true
+
+
+
+
