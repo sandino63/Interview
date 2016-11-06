@@ -1,0 +1,30 @@
+No of Pair having fixed sum in unsorted array (12,2,4, 10 , 2,4 15,16,8,5,5 ) 20 . Answer :- (12,8),(15,5)
+ 
+ 
+ 
+ import java.util.HashMap;
+
+public class ArrayPairSum {
+
+
+public static void main(String[] args) {        
+
+    int []a = {2,45,7,3,5,1,8,9};
+    printSumPairs(a,10);        
+
+}
+
+
+public static void printSumPairs(int []input, int k){
+    Map<Integer, Integer> pairs = new HashMap<Integer, Integer>();
+
+    for(int i=0;i<input.length;i++){
+
+        if(pairs.containsKey(input[i]))
+            System.out.println(input[i] +", "+ pairs.get(input[i]));
+        else
+            pairs.put(k-input[i], input[i]);
+    }
+
+}
+}
