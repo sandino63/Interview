@@ -1,0 +1,79 @@
+/**
+ * 
+ */
+package tree;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+/**
+ * @author sandeep
+ *
+ */
+
+// Definition for a binary tree node.
+class TreeNode {
+	int val;
+	TreeNode left;
+	TreeNode right;
+
+	TreeNode(int x) {
+		val = x;
+	}
+}
+
+public class binaryTreeLeftView {
+	public List<Integer> leftSideView(TreeNode root) {
+		List<Integer> res = new ArrayList<Integer>();
+		if (root == null)
+			return res;
+
+		Queue<TreeNode> q = new LinkedList<TreeNode>();
+		q.offer(root);
+		int currentLevel = 1;
+		int nextLevel = 0;
+
+		while (!q.isEmpty()) {
+			TreeNode tr = q.poll();
+			--currentLevel;
+
+			
+			if (tr.right != null) {
+				q.offer(tr.right);
+				++nextLevel;
+			}
+			
+			if (tr.left != null) {
+				q.offer(tr.left);
+				++nextLevel;
+
+			}
+			
+
+			if (currentLevel == 0) {
+				res.add(tr.val);
+				currentLevel = nextLevel;
+				nextLevel = 0;
+				
+			}
+
+		}
+
+		return res;
+	}
+	
+	
+	public static void main(String args[]){
+		binaryTreeLeftView bstv = new binaryTreeRightView();
+		TreeNode  root = new TreeNode(1);
+		root.left =  new TreeNode(2);
+		root.right = new TreeNode(3);
+		root.left.right =  new TreeNode(5);
+		root.right.right= new TreeNode(4);
+		
+		System.out.println(bstv.leftSideView(root));
+		
+	}
+}
