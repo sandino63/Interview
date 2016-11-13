@@ -24,8 +24,11 @@ class TreeNode {
 	}
 }
 
-public class binaryTreeLeftView {
-	public List<Integer> leftSideView(TreeNode root) {
+public class binaryTreeRightView {
+
+	static int maxLevel = 0;
+
+	public List<Integer> rightSideView(TreeNode root) {
 		List<Integer> res = new ArrayList<Integer>();
 		if (root == null)
 			return res;
@@ -39,41 +42,58 @@ public class binaryTreeLeftView {
 			TreeNode tr = q.poll();
 			--currentLevel;
 
-			
 			if (tr.right != null) {
 				q.offer(tr.right);
 				++nextLevel;
 			}
-			
+
 			if (tr.left != null) {
 				q.offer(tr.left);
 				++nextLevel;
 
 			}
-			
 
 			if (currentLevel == 0) {
 				res.add(tr.val);
 				currentLevel = nextLevel;
 				nextLevel = 0;
-				
+
 			}
 
 		}
 
 		return res;
 	}
-	
-	
-	public static void main(String args[]){
-		binaryTreeLeftView bstv = new binaryTreeRightView();
-		TreeNode  root = new TreeNode(1);
-		root.left =  new TreeNode(2);
+
+	public static void main(String args[]) {
+		binaryTreeRightView bstv = new binaryTreeRightView();
+		TreeNode root = new TreeNode(1);
+		root.left = new TreeNode(2);
 		root.right = new TreeNode(3);
-		root.left.right =  new TreeNode(5);
-		root.right.right= new TreeNode(4);
-		
-		System.out.println(bstv.leftSideView(root));
-		
+		root.left.right = new TreeNode(5);
+		root.right.right = new TreeNode(4);
+
+		System.out.println(bstv.rightSideView(root));
+		bstv.rightSideViewRecursive(root);
+	}
+
+	private void rightSideViewRecursive(TreeNode root) {
+		TreeRightSide(root, 1);
+
+	}
+
+	private void TreeRightSide(TreeNode root, int CurrentLevel) {
+
+		if (maxLevel < CurrentLevel) {
+			System.out.println(root.val);
+			maxLevel = CurrentLevel;
+
+		}
+
+		if (root.left != null)
+			TreeRightSide(root.left, CurrentLevel + 1);
+		if (root.right != null)
+			TreeRightSide(root.right, CurrentLevel + 1);
+
 	}
 }
