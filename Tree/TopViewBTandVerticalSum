@@ -1,0 +1,119 @@
+package tree;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Queue;
+
+public class TopViewBTandVerticalSum {
+
+	public Map<Integer, Integer> ht = new HashMap<>();
+	public static Map<Integer, Integer> hmap = new HashMap<>();
+
+	public void topView(Node root, int level) {
+
+		if (root == null)
+			return;
+		Queue<QueuePack> q = new LinkedList<>();
+		q.add(new QueuePack(root, level));
+		while (!q.isEmpty()) {
+			QueuePack queuePack = q.poll();
+
+			Node node = queuePack.node;
+			int lvl = queuePack.level;
+
+			if (!ht.containsKey(lvl)) {
+				// means first node of vertical level;
+				System.out.println("Top view Node :::" + node.data);
+				ht.put(lvl, node.data);
+			}
+
+			if (node.left != null) {
+				q.add(new QueuePack(node.left, lvl - 1));
+			}
+
+			if (node.right != null) {
+				q.add(new QueuePack(node.right, lvl + 1));
+			}
+
+		}
+
+	}
+
+	public static void main(String args[]) {
+		Node root = new Node(1);
+		root.left = new Node(2);
+		root.right = new Node(3);
+		root.left.left = new Node(4);
+		root.left.left.left = new Node(8);
+		root.left.left.right = new Node(9);
+		root.left.right = new Node(5);
+		root.right.left = new Node(6);
+		root.right.right = new Node(7);
+
+		TopViewBTandVerticalSum p = new TopViewBTandVerticalSum();
+		p.topView(root, 0);
+		p.vertcalSum(root, 0);
+		printRes(hmap);
+
+	}
+
+	private static void printRes(Map<Integer, Integer> hmap2) {
+
+		for (Entry<Integer, Integer> m : hmap2.entrySet()) {
+			System.out.println(m.getKey() + ":::" + m.getValue());
+		}
+
+	}
+
+	private void vertcalSum(Node root, int level) {
+
+		Queue<QueuePack> q = new LinkedList<>();
+
+		q.add(new QueuePack(root, level));
+
+		while (!q.isEmpty()) {
+
+			QueuePack qp = q.poll();
+			Node node = qp.node;
+			int lvl = qp.level;
+
+			if (hmap.containsKey(lvl)) {
+
+				int x = hmap.get(lvl);
+				int y = node.data + x;
+				hmap.put(lvl, y);
+
+			} else {
+
+				hmap.put(lvl, node.data);
+			}
+
+			if (node.left != null)
+				q.add(new QueuePack(node.left, lvl - 1));
+
+			if (node.right != null)
+				q.add(new QueuePack(node.right, lvl + 1));
+		}
+
+	}
+}
+// node structure of tree
+/*
+ * class Node { int data; Node left; Node right;
+ * 
+ * public Node(int data) { this.data = data; left = null; right = null; } }
+ */
+
+// this class' represents the items stored in queue (used for level order
+// traversal). Objects will store the nodes and its level
+class QueuePack {
+	int level;
+	Node node;
+
+	public QueuePack(Node node, int level) {
+		this.level = level;
+		this.node = node;
+	}
+}
