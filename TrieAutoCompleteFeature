@@ -1,0 +1,76 @@
+
+class TrieNode {
+
+    // Initialize your data structure here.
+    public Map<Character, TrieNode> children;
+    public boolean isLeaf = false;
+    public char val;
+
+    public TrieNode() {
+
+    }
+
+    public TrieNode(char val) {
+
+        this.val = val;
+    }
+
+}
+
+san
+save
+sbd
+sandeep
+
+
+Class AutoComplete {
+    public List<String> search(String _prefix) {
+        
+        List<String> searched = new ArrayList<>();
+        
+        TrieNode child = null;
+        
+        for (int i = 0; i < _prefix.length(); i++) {
+            char ch = _prefix.charAt(i);
+            //s 
+            
+            if (child != null) {
+                child = child.children.get(ch);
+            } else {
+                child =  children.get(ch);
+                //
+            }
+        }
+        
+        if (prefix.isEmpty()) {
+            for (TrieNode allChild : children.values()) {
+                print(searched, prefix, allChild);
+            }
+        } else {
+            print(searched, prefix, child);
+        }
+        
+        return searched;
+    }
+    
+    private void print(List<String> searched, String prefix, TrieNode node) {
+        
+        if (node == null) {
+            return;
+        }
+        
+        if (node.isLeaf) {
+            searched.add(prefix);
+            return;
+        }
+        
+        if (node.children.isEmpty()) {
+            return;
+        }
+        
+        for (TrieNode child : node.children) {
+            print(searched ,prefix + child.val, child);
+        }
+        
+    }
+}
