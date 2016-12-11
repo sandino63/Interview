@@ -24,20 +24,26 @@ sandeep
 
 
 Class AutoComplete {
+
+
+TrieNode root ;
+public AutoComplete(){
+ root = new TrieNode();
+}
     public List<String> search(String _prefix) {
         
         List<String> searched = new ArrayList<>();
         
-        TrieNode child = null;
+        TrieNode trienode = root;
         
         for (int i = 0; i < _prefix.length(); i++) {
             char ch = _prefix.charAt(i);
             //s 
             
-            if (child != null) {
-                child = child.children.get(ch);
+            if (tirnode.children != null) {
+                trienode = trienode.children.get(ch);
             } else {
-                child =  children.get(ch);
+                trienode =  trienode.children.get(ch);
                 //
             }
         }
