@@ -1,0 +1,36 @@
+Increasing-Decreasing Array
+
+Find the maximum element in an array which is first increasing and then decreasing
+Algorithm
+
+Use a binary search technique
+At every step calculate the mid element
+Compare the mid element with its neighbors
+if they are increasing then search the right sub array,
+if they are decreasing then search the left sub array
+else we have found the max element
+Code
+
+def find_max_element(arr):
+    if len(arr) == 0:
+        raise Error('No elements in the input array')
+    if len(arr) == 1:
+        return arr[0]
+    if len(arr) == 2:
+        return max(arr[0], arr[1])
+
+    low = 0
+    high = len(arr) - 1
+    while low < high:
+        mid = (low + high) / 2
+        # Compare mid's neighbors
+        if arr[mid - 1] < arr[mid] and arr[mid] > arr[mid + 1]:
+            # Found max
+            return arr[mid]
+        elif arr[mid -1] < arr[mid]:
+            low = mid
+        else:
+            high = mid
+Time complexity
+
+Since we are using the binary search technique, its O(log n)
