@@ -1,0 +1,100 @@
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Queue;
+
+class MaximumLevelSumInBinaryTree {
+	public static void main (String[] args) {
+		TreeNode root = new TreeNode(1);
+    root.setLeft(new TreeNode(2));
+    root.setRight(new TreeNode(3));
+    root.getLeft().setLeft(new TreeNode(4));
+    root.getLeft().setRight(new TreeNode(5));
+    root.getRight().setRight(new TreeNode(8));
+    root.getRight().getRight().setLeft(new TreeNode(6));
+    root.getRight().getRight().setRight(new TreeNode(7));
+
+    printTreeInOrder(root);
+    System.out.println();
+    System.out.println("MaxLevelSum: " + findMaxLevelSum(root));
+	}
+	
+	private static int findMaxLevelSum(TreeNode<Integer> node) {
+    int maxSum = 0;
+    int currentLevelSum = 0;
+    int level = 0;
+    Map<Integer, Integer> levelSumMap = new HashMap();
+    TreeNode<Integer> temp = null;
+    Queue<TreeNode<Integer>> q = new LinkedList<TreeNode<Integer>>();
+    q.add(node);
+    q.add(null);
+    while (!q.isEmpty()) {
+      temp = q.remove();
+      if (temp == null) {
+        maxSum = currentLevelSum > maxSum ? currentLevelSum : maxSum;
+        level++;
+        levelSumMap.put(level, currentLevelSum);
+        currentLevelSum = 0;
+        if (!q.isEmpty()) {
+          q.add(null);
+        }
+      } else {
+        currentLevelSum += temp.getData();
+        if (temp.getLeft() != null) {
+          q.add(temp.getLeft());
+        }
+        if (temp.getRight() != null) {
+          q.add(temp.getRight());
+        }
+      }
+    }
+    for (Entry<Integer, Integer> entry : levelSumMap.entrySet()) {
+      System.out.println("Sum @ Level " + entry.getKey() + " is : " + entry.getValue());
+    }
+    return maxSum;
+  }
+  
+	static void printTreeInOrder(TreeNode node){
+    if(node != null){
+      printTreeInOrder(node.getLeft());
+      System.out.print("["+node.getData()+"] ");
+      printTreeInOrder(node.getRight());
+    }
+  }
+}
+  
+class TreeNode<E> {
+  private E data;
+  private TreeNode<E> left;
+  private TreeNode<E> right;
+
+  public TreeNode(E data) {
+    this.data = data;
+  }
+
+  public E getData() {
+    return data;
+  }
+
+  public void setData(E data) {
+    this.data = data;
+  }
+
+  public TreeNode<E> getLeft() {
+    return left;
+  }
+
+  public void setLeft(TreeNode<E> left) {
+    this.left = left;
+  }
+
+  public TreeNode<E> getRight() {
+    return right;
+  }
+
+  public void setRight(TreeNode<E> right) {
+    this.right = right;
+  }
+
+}
