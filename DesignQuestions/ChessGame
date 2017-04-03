@@ -1,0 +1,181 @@
+Problem
+
+Design a chess game using object oriented principles.
+Solution
+
+
+The Chess game has the following classes
+Board
+Player
+Piece
+Square
+ChessGame
+The Board is made up of squares and so Board can be made responsible for creating and managing Square objects. Each piece also is on a square so each piece also has a reference to the square it is on.
+
+Each piece then is responsible to move itself from one square to another. Player class holds references to all pieces he owns and is also responsible for their creation (Should player create Pieces?) . Player has a method takeTurn which in turn calls a method movePiece which belongs to the piece Class which changes the location of the piece from its current location to another location.
+
+This is how the piece will look like :
+?
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+public enum PieceType {
+    None, Pawn, Knight, Bishop, Rook, Queen, King
+}
+ 
+public enum PieceColor {
+    White, Black
+}
+ 
+public struct Piece {
+    public PieceType Type { get; set; }
+    public PieceColor Color { get; set; }
+}
+
+Also, square will contain the position 
+?
+1
+2
+3
+4
+public class Square {
+    public int X { get; set; }
+    public int Y { get; set; }
+}
+
+Finally we have to compose Move, board and finally game : 
+?
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+public class Board {
+    private Square[][] squareSet;
+ 
+    public Piece[][] pieceSet { get; set; }
+ 
+    public Board Clone() { ... }
+}
+ 
+public class Move {
+    public Square From { get; }
+    public Square To { get; }
+    public Piece PieceMoved { get; }
+    public Piece PieceCaptured { get; }
+    public PieceType Promotion { get; }
+    public string AlgebraicNotation { get; }
+}
+ 
+public class Game {
+    public Board Board { get; }
+    public List<Move> Movelist { get; }
+    public PieceType Turn { get; set; }
+    public Square DoublePawnPush { get; set; } // Used for tracking valid en passant captures
+    public int Halfmoves { get; set; }
+  
+ Player p1,p2;
+ 
+    public bool CanWhiteCastleA { get; set; }
+    public bool CanWhiteCastleH { get; set; }
+    public bool CanBlackCastleA { get; set; }
+    public bool CanBlackCastleH { get; set; }
+  
+ //methods
+ private void createAndPlacePieces(){
+ //generate pieces using a factory method
+   //for e.g. config[1][0] = PieceFactory("Pawn",color);
+ }
+  
+ private void setTurn(color) {
+  turn = color;
+  currentPlayer = (turn==black)?p2 : p1;
+ }
+  
+ private void Play()
+ {
+  while(CheckStatus!=GameOver)
+  {
+    changeTurn(); // calls movePiece on the Piece object    
+ 
+  }
+ }
+  
+}
+ 
+public interface IGameRules {
+    // ....
+}
+
+The basic idea is that Game/Board/etc simply store the state of the game. You can manipulate them to e.g. set up a position, if that's what you want. I have a class that implements my IGameRules interface that is responsible for:
+Determining what moves are valid, including castling and en passant.
+Determining if a specific move is valid.
+Determining when players are in check/checkmate/stalemate.
+Executing moves.
+Separating the rules from the game/board classes also means you can implement variants relatively easily. All methods of the rules interface take a Game object which they can inspect to determine which moves are valid.
+Note that I do not store player information on Game. I have a separate class Table that is responsible for storing game metadata such as who was playing, when the game took place, etc.
+
+Here is the class diagram (courtesy) :
+
+http://swcodes.blogspot.in/2012/09/chess-game-design.html
+
