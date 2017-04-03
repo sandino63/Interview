@@ -1,3 +1,6 @@
+http://swcodes.blogspot.in/2012/09/chess-game-design.html
+
+
 Problem
 
 Design a chess game using object oriented principles.
@@ -15,19 +18,7 @@ The Board is made up of squares and so Board can be made responsible for creatin
 Each piece then is responsible to move itself from one square to another. Player class holds references to all pieces he owns and is also responsible for their creation (Should player create Pieces?) . Player has a method takeTurn which in turn calls a method movePiece which belongs to the piece Class which changes the location of the piece from its current location to another location.
 
 This is how the piece will look like :
-?
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
+
 public enum PieceType {
     None, Pawn, Knight, Bishop, Rook, Queen, King
 }
@@ -42,74 +33,15 @@ public struct Piece {
 }
 
 Also, square will contain the position 
-?
-1
-2
-3
-4
+
 public class Square {
     public int X { get; set; }
     public int Y { get; set; }
 }
 
 Finally we have to compose Move, board and finally game : 
-?
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
+
+
 public class Board {
     private Square[][] squareSet;
  
