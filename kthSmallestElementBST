@@ -1,5 +1,7 @@
 /**
  * Definition for a binary tree node.
+ 
+ using Inorder Traversal of the tree 
  * public class TreeNode {
  *     int val;
  *     TreeNode left;
