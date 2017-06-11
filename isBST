@@ -32,19 +32,18 @@ public class Solution {
 
 public class Solution {
     public boolean isValidBST(TreeNode root) {
-      	int min = Integer.MIN_VALUE;
-	int max = Integer.MAX_VALUE;
     
-    return isValidBST(root, min , max);
+    
+    return isValidBST(root, Long.MIN_VALUE , Long.MAX_VALUE);
     
     
 }
 
-private boolean isValidBST(TreeNode root, int min, int max) {
+private boolean isValidBST(TreeNode root, long min, long max) {
 	
  if(root == null) return true ;
  
-if(root.val <= min || root.val > max){
+if(root.val <= min || root.val >= max){
 	 return false;
  }
 	return isValidBST(root.left, min, root.val) && isValidBST(root.right, root.val, max);
