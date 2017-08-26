@@ -57,4 +57,27 @@ public class MaxProductSubArray {
 		}
 		return maxProduct;
 	}
+	
+	
+	/**
+//kadane extension simpler solution 
+**/
+
+static int getMaximumProductSubarray(int[] arr)
+	{
+	int currentPositive = arr[0];
+	int currentNegative = arr[0];
+	int overallPositive = arr[0];
+	int overallNegative = arr[0];
+	for(int i = 1; i < arr.length; i++)
+	{
+	int temp = currentPositive;
+	currentPositive = Math.max(arr[i], Math.max(currentPositive * arr[i], currentNegative * arr[i]));
+	currentNegative = Math.min(arr[i], Math.min(temp * arr[i], currentNegative * arr[i]));
+	overallPositive = Math.max(overallPositive, currentPositive);
+	overallNegative = Math.min(overallNegative, currentNegative);
+	}
+	return overallPositive;
+	}
+	
 }
