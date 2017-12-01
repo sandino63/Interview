@@ -1,2 +1,23 @@
+
+
+
+
+cd /usr/local/bin
+sudo wget https://releases.hashicorp.com/consul/0.6.4/consul_0.6.4_linux_amd64.zip
+sudo unzip consul_0.6.4_linux_amd64.zip
+sudo rm consul_0.6.4_linux_amd64.zip
+
+
+
+./consul agent -ui --dev
+
+
+it will run on localhost , run the demo application and check for consul ......
+
+
+
+
+
+
 https://www.youtube.com/watch?v=iVKveB-2bGQ
 
