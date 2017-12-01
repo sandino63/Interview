@@ -1,0 +1,22 @@
+Install Consule 0.8.0 on centos 7
+
+update yum and install wget,unzip,dig
+
+yum update -y
+yum install wget uzip bind-utils -y
+create directories
+
+mkdir /tmp/consul
+mkdir /var/consul
+download consul
+
+cd /tmp/consul
+wget https://releases.hashicorp.com/consul/0.8.0/consul_0.8.0_linux_amd64.zip
+unzip consul and move to target
+
+unzip consul_0.8.0_linux_amd64.zip
+move consul_0.8.0_linux_amd64.zip /var/consul/
+update path
+
+echo "PATH=$PATH:/var/consul" > /etc/profile.d/consul.sh
+source /etc/profile.d/consul.sh
