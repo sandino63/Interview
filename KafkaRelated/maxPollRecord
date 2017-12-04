@@ -1,0 +1,2 @@
+"max.poll.records" default value is 500, check whether it is getting set to 500 and if it is 500 then reduce/adjust it to considering per message time required to process.
+Once "max.poll.records" is adjusted then we need to adjust two more properties at consumer level  "consumer session timeout ms" and "consumer  request time out ms", so that polled records get processed in configured times.
