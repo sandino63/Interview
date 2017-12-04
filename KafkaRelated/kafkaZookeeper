@@ -1,0 +1,41 @@
+kafka zookeeper command 
+
+
+
+[ntalukdar@ip-172-31-7-4 kafka]$ bin/zookeeper-shell.sh  127.0.0.1:2181
+
+Connecting to 127.0.0.1:2181
+Welcome to ZooKeeper!
+JLine support is disabled
+
+WATCHER::
+
+WatchedEvent state:SyncConnected type:None path:null
+
+
+
+
+ls /
+[cluster, controller_epoch, controller, brokers, zookeeper, admin, isr_change_notification, consumers, config, poslocks]
+
+ls /brokers
+[ids, topics, seqid]
+ls /ids
+Node does not exist: /ids
+ls /brokers/ids
+[1, 2, 3]
+ls /brokers/ids
+[1, 2, 3]
+get /brokers/ids/1
+{"jmx_port":9999,"timestamp":"1510771412720","endpoints":["PLAINTEXT://ip-172-31-11-86.ap-southeast-1.compute.internal:9092"],"host":"ip-172-31-11-86.ap-southeast-1.compute.internal","version":3,"port":9092}
+cZxid = 0x5000043d0
+ctime = Wed Nov 15 18:43:33 UTC 2017
+mZxid = 0x5000043d0
+mtime = Wed Nov 15 18:43:33 UTC 2017
+pZxid = 0x5000043d0
+cversion = 0
+dataVersion = 0
+aclVersion = 0
+ephemeralOwner = 0x25fbdd81e060ac3
+dataLength = 207
+numChildren = 0
